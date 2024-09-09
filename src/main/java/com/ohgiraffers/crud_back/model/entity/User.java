@@ -9,6 +9,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private String phoneNumber;
+
     @Column(unique = true, nullable = false)
     private String username;
 
@@ -27,7 +33,9 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String email, String role, boolean isSocialLogin) {
+    public User(String name, String phoneNumber, String username, String password, String email, String role, boolean isSocialLogin) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -43,6 +51,22 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getUsername() {
@@ -89,6 +113,8 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +

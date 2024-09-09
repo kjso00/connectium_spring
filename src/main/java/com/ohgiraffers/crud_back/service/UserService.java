@@ -27,7 +27,9 @@ public class UserService {
                 .orElseGet(() -> {
                     User newUser = new User();
                     newUser.setEmail(email);
-                    newUser.setUsername(email);
+                    newUser.setUsername(email); // You might want to generate a unique username
+                    newUser.setName(""); // Set default name for social login users
+                    newUser.setPhoneNumber(""); // Set default phone number for social login users
                     newUser.setRole("ROLE_USER");
                     newUser.setSocialLogin(true);
                     newUser.setPassword("");
@@ -35,12 +37,14 @@ public class UserService {
                 });
     }
 
-    public User createRegularUser(String username, String email, String password, PasswordEncoder passwordEncoder) {
-        return userRepository.findByEmail(email)
+    public User createRegularUser(String name, String phoneNumber, String username, String email, String password, PasswordEncoder passwordEncoder) {
+        return userRepository.findByUsername(username)
                 .orElseGet(() -> {
                     User newUser = new User();
-                    newUser.setEmail(email);
+                    newUser.setName(name);
+                    newUser.setPhoneNumber(phoneNumber);
                     newUser.setUsername(username);
+                    newUser.setEmail(email);
                     newUser.setPassword(passwordEncoder.encode(password));
                     newUser.setRole("ROLE_USER");
                     newUser.setSocialLogin(false);

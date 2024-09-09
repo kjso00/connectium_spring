@@ -1,7 +1,8 @@
 package com.ohgiraffers.crud_back.model.dto;
 
 public class RegisterRequest {
-
+    private String name;
+    private String phoneNumber;
     private String username;
     private String email;
     private String password;
@@ -9,10 +10,28 @@ public class RegisterRequest {
     public RegisterRequest() {
     }
 
-    public RegisterRequest(String username, String email, String password) {
+    public RegisterRequest(String name, String phoneNumber, String username, String email, String password) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getUsername() {
@@ -42,7 +61,9 @@ public class RegisterRequest {
     @Override
     public String toString() {
         return "RegisterRequest{" +
-                "username='" + username + '\'' +
+                "name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
